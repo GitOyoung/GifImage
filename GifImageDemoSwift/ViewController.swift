@@ -12,7 +12,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let gif = UIImage.gifNamed("joy")
+        let gifView = UIImageView(image: gif)
+        gifView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        gifView.center = view.center
+        
+        view.addSubview(gifView)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

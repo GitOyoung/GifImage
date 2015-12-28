@@ -56,16 +56,7 @@ func gcdOfArray(array: [Int]) -> Int
 
 extension UIImage {
     
-    
-    public class func gifWithData(data d: NSData) -> UIImage?
-    {
-        guard let s = CGImageSourceCreateWithData(d, nil) else {
-            return nil
-        }
-        return UIImage.animatedImageWithSource(source: s)
-    }
-    
-    public class func gifNamed(name: String) ->UIImage?
+    public class func gifData(name: String) -> NSData?
     {
         guard let bundleURL = NSBundle.mainBundle().URLForResource(name, withExtension: "gif") else {
             return nil
@@ -73,10 +64,26 @@ extension UIImage {
         guard let imageData = NSData(contentsOfURL: bundleURL) else {
             return nil
         }
+        return imageData
+    }
+    //获取gif的动态图
+    public class func gifWithData(data d: NSData) -> UIImage?
+    {
+        guard let s = CGImageSourceCreateWithData(d, nil) else {
+            return nil
+        }
+        return UIImage.animatedImageWithSource(source: s)
+    }
+    public class func gifNamed(name: String) ->UIImage?
+    {
+        guard let imageData = gifData(name) else {
+            return nil
+        }
         return gifWithData(data: imageData)
     }
+  
     
-    public class func animatedImageWithSource(source s: CGImageSource) ->UIImage?
+    public class func animatedImagesWithSource(source s: CGImageSource) -> ([UIImage]?, Int)
     {
         let count = CGImageSourceGetCount(s)
         var images = [CGImageRef]()
@@ -103,19 +110,58 @@ extension UIImage {
                 frames.append(frame)
             }
         }
+        return (frames, duration)
+    }
+    
+    public class func animatedImageWithSource(source s: CGImageSource) ->UIImage?
+    {
         
-        let animation = UIImage.animatedImageWithImages(frames, duration: Double(duration) / 1000.0)
+        let (frames, duration) = animatedImagesWithSource(source: s)
+        let animation = UIImage.animatedImageWithImages(frames!, duration: Double(duration) / 1000.0)
         return animation
         
     }
     
-    class func delayForImageAtIndex(index: Int, source: CGImageSource!) -> Double {
+    //获取gif单帧图片
+    public class func gifImageWithData(data d: NSData, forIndex idx: Int) -> UIImage?
+    {
+        guard let s = CGImageSourceCreateWithData(d, nil) else {
+            return nil
+        }
+        return UIImage.animatedImageWithSource(source: s, forIndex: idx)
+    }
+    
+    public class func gifImageNamed(name: String, forIndex idx: Int) -> UIImage?
+    {
+        guard let imageData = gifData(name) else {
+            return nil
+        }
+        return gifImageWithData(data: imageData, forIndex: idx)
+    }
+    
+    public class func animatedImageWithSource(source s: CGImageSource, forIndex index: Int) -> UIImage?
+    {
+        let (frames, _) = animatedImagesWithSource(source: s)
+        guard let f = frames else {
+            print("No Images!")
+            return nil
+        }
+        
+        guard index < f.count else {
+            print("Index too large!")
+            return nil
+        }
+        return f[index]
+    }
+    
+    class func delayForImageAtIndex(index: Int, source: CGImageSource!) -> Double
+    {
         var delay = 0.1
         
   
-        let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
+        let scProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
         let gifProperties: CFDictionaryRef = unsafeBitCast(
-            CFDictionaryGetValue(cfProperties, unsafeAddressOf(kCGImagePropertyGIFDictionary)),
+            CFDictionaryGetValue(scProperties, unsafeAddressOf(kCGImagePropertyGIFDictionary)),
             CFDictionary.self)
         
         var delayObject: AnyObject = unsafeBitCast(

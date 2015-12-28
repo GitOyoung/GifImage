@@ -14,6 +14,7 @@
 		E3FC71371C31020B002FFEE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3FC71351C31020B002FFEE1 /* LaunchScreen.storyboard */; };
 		E3FC71441C312409002FFEE1 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC71431C312409002FFEE1 /* UIImage+Gif.swift */; };
 		E3FC71461C312434002FFEE1 /* joy.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3FC71451C312434002FFEE1 /* joy.gif */; };
+		E3FC71531C313F3E002FFEE1 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC71521C313F3E002FFEE1 /* ImageButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E3FC71381C31020B002FFEE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3FC71431C312409002FFEE1 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Gif.swift"; path = "GifImageDemoSwift/UIImage+Gif.swift"; sourceTree = "<group>"; };
 		E3FC71451C312434002FFEE1 /* joy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = joy.gif; sourceTree = "<group>"; };
+		E3FC71521C313F3E002FFEE1 /* ImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageButton.swift; path = GifImageDemoSwift/ImageButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		E3FC713E1C31021D002FFEE1 /* GifImage */ = {
 			isa = PBXGroup;
 			children = (
+				E3FC71521C313F3E002FFEE1 /* ImageButton.swift */,
 				E3FC71431C312409002FFEE1 /* UIImage+Gif.swift */,
 			);
 			name = GifImage;
@@ -152,6 +155,7 @@
 			files = (
 				E3FC71441C312409002FFEE1 /* UIImage+Gif.swift in Sources */,
 				E3FC712F1C31020B002FFEE1 /* ViewController.swift in Sources */,
+				E3FC71531C313F3E002FFEE1 /* ImageButton.swift in Sources */,
 				E3FC712D1C31020B002FFEE1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

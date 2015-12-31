@@ -40,7 +40,7 @@ enum ImageType
 class ImageButton: UIControl {
     
     private var imageView: UIImageView
-    private var animated: Bool = true
+    private var animated: Bool = false
     var animatedImage: UIImage?
     var normalImage: UIImage?
     
